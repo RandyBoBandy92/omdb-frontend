@@ -29,10 +29,12 @@ function App() {
   };
 
   return (
-    <div className="app">
-      <h1>Search Movies</h1>
-      <input type="text" value={query} onChange={handleChange} />
-    </div>
+    <>
+      <header>
+        <h1>Search Movies</h1>
+        <input type="text" value={query} onChange={handleChange} />
+      </header>
+    </>
   );
 }
 
