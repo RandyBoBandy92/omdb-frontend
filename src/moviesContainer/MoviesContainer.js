@@ -4,6 +4,7 @@ import { cleanMovieData } from "../utilities/toolbelt";
 const MoviesContainer = ({ apiData, viewMoreMovies }) => {
   if (apiData.Search.length > 0) {
     const searchResults = cleanMovieData(apiData.Search);
+    console.log(apiData);
     return (
       <>
         <ul className="movies-results">
@@ -11,7 +12,7 @@ const MoviesContainer = ({ apiData, viewMoreMovies }) => {
             <Movie key={movieData.imdbID} movieData={movieData} />
           ))}
         </ul>
-        {apiData.Search.length < apiData.totalResults && (
+        {apiData.totalResults > apiData.Search.length && (
           <button onClick={viewMoreMovies} className="view-more">
             View More
           </button>
