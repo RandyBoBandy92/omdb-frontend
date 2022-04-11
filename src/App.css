@@ -2,6 +2,7 @@
 :root {
   --primary-color: #d48a00;
   --secondary-color: #004ad4;
+  --background-color: rgb(31, 31, 31);
 }
 
 /* Accessibility */
@@ -23,7 +24,7 @@
 /* Base Styles */
 #root {
   min-height: 100vh;
-  background-color: rgb(31, 31, 31);
+  background-color: var(--background-color);
   color: white;
 }
 
@@ -74,7 +75,7 @@ header {
   left: 0;
   right: 0;
   z-index: 10000;
-  background-color: rgb(31, 31, 31);
+  background-color: var(--background-color);
 }
 
 header h1 {
