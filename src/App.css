@@ -59,18 +59,22 @@ button {
 
 .app {
   display: grid;
-  grid-template-rows: auto minmax(100vh, auto) auto;
-  grid-template-areas: "header" "main" "footer";
+  grid-template-rows: minmax(100vh, auto) auto;
+  grid-template-areas: "main" "footer";
 }
 
 /* Header Styles */
 
 header {
-  grid-area: header;
   display: grid;
   grid-template-columns: auto 1fr auto;
   grid-template-areas: "title . search";
   padding: 1rem 1rem;
+  position: fixed;
+  left: 0;
+  right: 0;
+  z-index: 10000;
+  background-color: rgb(31, 31, 31);
 }
 
 header h1 {
@@ -126,6 +130,7 @@ header .search input:focus-visible {
 /* Main Styles */
 
 main {
+  margin-top: 5rem;
   grid-area: main;
   display: grid;
   grid-template-rows: auto auto;
@@ -153,6 +158,7 @@ li.movie {
 
 .movie img {
   object-fit: cover;
+  height: 100%;
 }
 
 li.movie .movie-details {
