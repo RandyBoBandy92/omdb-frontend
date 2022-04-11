@@ -1,23 +1,37 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import { searchMovies } from "./api/api";
+import { useEffect, useRef, useState } from "react";
 
 function App() {
+  const [query, setQuery] = useState("");
+  const [movies, setMovies] = useState([]);
+  const [page, setPage] = useState(2);
+  const searchTimeoutId = useRef(false);
+
+  useEffect(() => {
+    clearTimeout(searchTimeoutId.current);
+    if (query) {
+      searchTimeoutId.current = setTimeout(() => {
+        searchMovies(query, page).then((data) => {
+          if (data.Response === "True") {
+            setMovies(data.Search);
+          } else {
+            setMovies([]);
+          }
+          console.log(data);
+        });
+      }, 400);
+    }
+  }, [query]);
+
+  const handleChange = (e) => {
+    setQuery(e.target.value);
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="app">
+      <h1>Search Movies</h1>
+      <input type="text" value={query} onChange={handleChange} />
     </div>
   );
 }
