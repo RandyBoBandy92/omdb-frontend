@@ -4,7 +4,6 @@ import { cleanMovieData } from "../utilities/toolbelt";
 const MoviesContainer = ({ apiData, viewMoreMovies }) => {
   if (apiData.Search.length > 0) {
     const searchResults = cleanMovieData(apiData.Search);
-    console.log(apiData);
     return (
       <>
         <ul className="movies-results">
