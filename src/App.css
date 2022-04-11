@@ -5,6 +5,23 @@
   color: white;
 }
 
+/* Element Styles */
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+  margin: 0;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+}
+
 /* App Styles */
 
 .app {
@@ -39,6 +56,61 @@ header input {
 
 main {
   grid-area: main;
+}
+
+/* Movie Results Styles */
+
+.movies-results {
+  display: grid;
+  /* needs to auto flow */
+  grid-template-columns: repeat(auto-fit, 300px);
+  gap: 1rem;
+  justify-content: center;
+}
+
+/* Individual Movie Styles */
+
+li.movie {
+  border-radius: 20px;
+  overflow: hidden;
+  position: relative;
+  width: 300px;
+}
+
+.movie img {
+  object-fit: cover;
+}
+
+li.movie .movie-details {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.6);
+  display: grid;
+  grid-template-rows: auto auto 1fr auto;
+  grid-template-areas:
+    "title"
+    "year"
+    "."
+    "more-info";
+  gap: 10px;
+  padding: 1rem;
+}
+
+.movie-details h2 {
+  grid-area: title;
+}
+
+.movie-details p {
+  grid-area: year;
+}
+
+.movie-details button {
+  grid-area: more-info;
+  width: fit-content;
+  padding: 0.5rem 1rem;
 }
 
 /* Footer Styles */
