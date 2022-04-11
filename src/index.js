@@ -6,7 +6,12 @@ import App from "./App";
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <>
+      <a className="skip-to-content-link" href="#main">
+        Skip To Content
+      </a>
+      <App />
+    </>
   </React.StrictMode>,
   document.getElementById("root")
 );

@@ -4,7 +4,6 @@ import { useEffect, useRef, useState } from "react";
 import Header from "./header/Header";
 import Footer from "./footer/Footer";
 import MoviesContainer from "./moviesContainer/MoviesContainer";
-import { cleanMovieData } from "./utilities/toolbelt";
 
 function App() {
   const [query, setQuery] = useState("");
@@ -31,6 +30,8 @@ function App() {
   };
 
   const viewMoreMovies = () => {
+    // query remains the same, only the page number changes
+    // so combining the two arrays together should be fine
     page.current++;
     searchMovies(query, page.current).then((data) => {
       if (data.Response === "True") {
@@ -45,7 +46,7 @@ function App() {
   return (
     <div className="app">
       <Header setQuery={setQuery} query={query} handleChange={handleChange} />
-      <main>
+      <main id="main">
         {apiData.Response === "True" && (
           <MoviesContainer viewMoreMovies={viewMoreMovies} apiData={apiData} />
         )}

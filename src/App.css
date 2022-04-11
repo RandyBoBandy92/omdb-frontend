@@ -4,6 +4,22 @@
   --secondary-color: #004ad4;
 }
 
+/* Accessibility */
+
+.skip-to-content-link {
+  background: #e77e23;
+  height: 30px;
+  left: 50%;
+  top: -5rem;
+  padding: 8px;
+  position: absolute;
+  transform: translateX(-50%);
+}
+
+.skip-to-content-link:focus {
+  top: 0;
+}
+
 /* Base Styles */
 #root {
   min-height: 100vh;
