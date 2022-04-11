@@ -8,23 +8,21 @@ import { cleanMovieData } from "./utilities/toolbelt";
 
 function App() {
   const [query, setQuery] = useState("");
-  const [movies, setMovies] = useState([]);
-  const [page, setPage] = useState(2);
+  const [apiData, setApiData] = useState({});
+  const page = useRef(1);
   const searchTimeoutId = useRef(false);
 
   useEffect(() => {
     clearTimeout(searchTimeoutId.current);
     if (query) {
+      page.current = 1;
       searchTimeoutId.current = setTimeout(() => {
-        searchMovies(query, page).then((data) => {
-          if (data.Response === "True") {
-            setMovies(cleanMovieData(data.Search));
-          } else {
-            setMovies([]);
-          }
-          console.log(data);
+        searchMovies(query, page.current).then((data) => {
+          setApiData(data);
         });
       }, 400);
+    } else {
+      setApiData({});
     }
   }, [query]);
 
@@ -32,11 +30,28 @@ function App() {
     setQuery(e.target.value);
   };
 
+  const viewMoreMovies = () => {
+    page.current++;
+    searchMovies(query, page.current).then((data) => {
+      if (data.Response === "True") {
+        setApiData({
+          ...apiData,
+          Search: [...apiData.Search, ...data.Search],
+        });
+      }
+    });
+  };
+
   return (
     <div className="app">
-      <Header query={query} handleChange={handleChange} />
+      <Header setQuery={setQuery} query={query} handleChange={handleChange} />
       <main>
-        <MoviesContainer movies={movies} />
+        {apiData.Response === "True" && (
+          <MoviesContainer viewMoreMovies={viewMoreMovies} apiData={apiData} />
+        )}
+        {apiData.Response === "False" && (
+          <h2 className="error">No Movies Found!</h2>
+        )}
       </main>
       <Footer />
     </div>

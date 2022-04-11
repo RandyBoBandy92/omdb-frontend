@@ -1,13 +1,22 @@
 import Movie from "../movie/Movie";
+import { cleanMovieData } from "../utilities/toolbelt";
 
-const MoviesContainer = ({ movies }) => {
-  if (movies.length > 0) {
+const MoviesContainer = ({ apiData, viewMoreMovies }) => {
+  if (apiData.Search.length > 0) {
+    const searchResults = cleanMovieData(apiData.Search);
     return (
-      <ul className="movies-results">
-        {movies.map((movieData, index) => (
-          <Movie key={index} movieData={movieData} />
-        ))}
-      </ul>
+      <>
+        <ul className="movies-results">
+          {searchResults.map((movieData, index) => (
+            <Movie key={movieData.imdbID} movieData={movieData} />
+          ))}
+        </ul>
+        {apiData.Search.length < apiData.totalResults && (
+          <button onClick={viewMoreMovies} className="view-more">
+            View More
+          </button>
+        )}
+      </>
     );
   }
 };
