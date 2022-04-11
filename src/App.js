@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import Header from "./header/Header";
 import Footer from "./footer/Footer";
 import MoviesContainer from "./moviesContainer/MoviesContainer";
+import { cleanMovieData } from "./utilities/toolbelt";
 
 function App() {
   const [query, setQuery] = useState("");
@@ -17,7 +18,7 @@ function App() {
       searchTimeoutId.current = setTimeout(() => {
         searchMovies(query, page).then((data) => {
           if (data.Response === "True") {
-            setMovies(data.Search);
+            setMovies(cleanMovieData(data.Search));
           } else {
             setMovies([]);
           }
