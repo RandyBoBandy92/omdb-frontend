@@ -1,6 +1,9 @@
 import "./App.css";
 import { searchMovies } from "./api/api";
 import { useEffect, useRef, useState } from "react";
+import Header from "./header/Header";
+import Footer from "./footer/Footer";
+import MoviesContainer from "./moviesContainer/MoviesContainer";
 
 function App() {
   const [query, setQuery] = useState("");
@@ -29,12 +32,13 @@ function App() {
   };
 
   return (
-    <>
-      <header>
-        <h1>Search Movies</h1>
-        <input type="text" value={query} onChange={handleChange} />
-      </header>
-    </>
+    <div className="app">
+      <Header query={query} handleChange={handleChange} />
+      <main>
+        <MoviesContainer movies={movies} />
+      </main>
+      <Footer />
+    </div>
   );
 }
 

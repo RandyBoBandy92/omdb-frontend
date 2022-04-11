@@ -1,1 +1,49 @@
+/* Base Styles */
+#root {
+  min-height: 100vh;
+  background-color: rgb(31, 31, 31);
+  color: white;
+}
+
+/* App Styles */
+
+.app {
+  display: grid;
+  grid-template-rows: auto minmax(100vh, auto) auto;
+  grid-template-areas: "header" "main" "footer";
+}
+
 /* Header Styles */
+
+header {
+  grid-area: header;
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  grid-template-areas: "title . search";
+  padding: 1rem 1rem;
+}
+
+header h1 {
+  grid-area: title;
+  font-size: 1.5rem;
+}
+
+header input {
+  grid-area: search;
+  height: 1rem;
+  align-self: center;
+  background-color: lightgray;
+}
+
+/* Main Styles */
+
+main {
+  grid-area: main;
+}
+
+/* Footer Styles */
+
+footer {
+  grid-area: footer;
+  text-align: center;
+}
