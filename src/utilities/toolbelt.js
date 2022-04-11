@@ -1,7 +1,7 @@
 const cleanMovieData = (movies) => {
-  // Removes movies with missing posters and any with duplicate imdbIds
+  // Removes movies with missing posters, duplicate imdbIds, or non-movie types
   const cleanedMovies = movies.filter((movie) => {
-    return movie.Poster !== "N/A" && movie.Poster !== "";
+    return movie.Poster !== "N/A" && movie.Type === "movie";
   });
   const uniqueMovies = cleanedMovies.reduce((acc, current) => {
     const imdbId = current.imdbID;
