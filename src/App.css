@@ -141,7 +141,6 @@ main {
 
 .movies-results {
   display: grid;
-  /* needs to auto flow */
   grid-template-columns: repeat(auto-fit, 300px);
   gap: 1rem;
   justify-content: center;
