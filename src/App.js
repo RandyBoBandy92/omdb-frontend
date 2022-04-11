@@ -12,6 +12,8 @@ function App() {
   const searchTimeoutId = useRef(false);
 
   useEffect(() => {
+    // Want to delay the api call slightly so we aren't sending
+    // a bajillion requests on every keystroke
     clearTimeout(searchTimeoutId.current);
     if (query) {
       page.current = 1;
